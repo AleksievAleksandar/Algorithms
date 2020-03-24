@@ -4,7 +4,7 @@ void FlightGenerator::genTickets(const int someArr[], int startPos, int endPos, 
 {
 	if (level == 1 && this->lastIsVisit == false)
 	{
-		this->printArr(someArr, startPos, endPos);
+		this->createStringFromDestinations(someArr, startPos, endPos);
 		this->lastIsVisit = true;
 		return;
 	}
@@ -26,7 +26,7 @@ void FlightGenerator::genTickets(const int someArr[], int startPos, int endPos, 
 		this->clearCurrentLevel(level);
 		while (cnt < increase)
 		{
-			if (getNext == this->arrSize - 1)
+			if (getNext == this->arrSize - 1) //if we take the last destination, before we get to bottom
 			{
 				return;
 			}
@@ -38,7 +38,7 @@ void FlightGenerator::genTickets(const int someArr[], int startPos, int endPos, 
 		startPos = getNext - 1;
 	}
 	int limit = this->howManyWorkIterations;
-	if (level == this->numberOfTickets)
+	if (level == this->numberOfTickets) //based of current level we calculate iterations for next levels
 	{
 		limit = this->howManyWorkIterations - newCnt + 1;
 	}
@@ -49,7 +49,7 @@ void FlightGenerator::genTickets(const int someArr[], int startPos, int endPos, 
 	}
 }
 
-void FlightGenerator::printArr(const int someArr[], const int& start, const int& end)
+void FlightGenerator::createStringFromDestinations(const int someArr[], const int& start, const int& end)
 {
 	for (size_t i = this->arrSize; i > 0; i--)
 	{
@@ -106,7 +106,7 @@ FlightGenerator::FlightGenerator(const int arrWithDestinations[], const size_t& 
 	{
 		this->destinations[i] = 0;
 	}
-	for (size_t i = 0; i < this->arrSize; i++)
+	for (size_t i = 0; i < this->arrSize; i++) //copy destinations
 	{
 		this->destinations[i] = arrWithDestinations[i];
 	}
