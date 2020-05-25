@@ -12,7 +12,7 @@ int main()
 	std::getline(std::cin, target);
 
 	Words* words = new Words();
-	words->generateWordsCombinations(userInputOfWords, target);
+	std::cout << words->generateWordsCombinations(userInputOfWords, target);
 
 	return 0;
 }
