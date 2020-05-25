@@ -1,17 +1,17 @@
 #include "Words.h"
-#include <iostream>
-#include <set>
 
-void Words::generateWordsCombinations(std::string stringWords, std::string stringTarget)
+std::string Words::generateWordsCombinations(std::string stringWords, std::string stringTarget)
 {
 	this->getAllWords(stringWords);
 	this->getTargetString(stringTarget);
 
-	//this->combinations.resize(words.size());
+	this->generatedCombinations.resize(words.size());
 	this->visited.resize(words.size());
 	this->setFields();
 
-	this->gen(this->words, 0);
+	this->generate(this->words, 0, 0);
+
+	return this->solutions.str();
 }
 
 void Words::getAllWords(std::string stringWords)
@@ -35,28 +35,13 @@ void Words::getAllWords(std::string stringWords)
 
 void Words::getTargetString(std::string stringWord)
 {
-	this->target = stringWord;
+	this->targetString = stringWord;
 }
 
-void Words::gen(std::vector<std::string> words, int index)
-{
-	int cnt = 0;
 
-	while (cnt != this->target.size())
-	{
-		for (size_t i = 0; i < this->words.size(); i++)
-		{
-			if (this->words[i][0] == this->target[cnt])
-			{
-				this->combinations.push_back(words[i]);
-			}
-		}
-		cnt++;
-	}
-	std::set<std::string> uniqe(this->combinations.begin(), this->combinations.end());
-	int a = 0;
-	/*
-	if (index >= words.size())
+void Words::generate(std::vector<std::string> words, int index, int startIndex)
+{
+	if (startIndex >= this->targetString.size())
 	{
 		this->print();
 		return;
@@ -64,18 +49,17 @@ void Words::gen(std::vector<std::string> words, int index)
 
 	for (size_t i = 0; i < words.size(); i++)
 	{
-		if (this->visited[i] != true)
+		if (findWord(words[i], startIndex))
 		{
-			this->visited[i] = true;
-			this->combinations[index] = words[i];
+			this->generatedCombinations[index] = words[i];
+			startIndex += words[i].size();
 
-			this->gen(words, index + 1);
+			generate(words, index + 1, startIndex);
 
-			this->visited[i] = false;
-			this->combinations[index] = "";
+			this->generatedCombinations[index] = "";
+			startIndex -= words[i].size();
 		}
 	}
-	*/
 }
 
 void Words::setFields()
@@ -88,9 +72,27 @@ void Words::setFields()
 
 void Words::print()
 {
-	for (size_t i = 0; i < this->combinations.size(); i++)
+	for (size_t i = 0; i < this->generatedCombinations.size(); i++)
 	{
-		std::cout << combinations[i] << " ";
+		this->solutions << generatedCombinations[i] << " ";
 	}
-	std::cout << "\n";
+	this->solutions << "\n";
+}
+
+bool Words::findWord(std::string currentWord, int startIndex)
+{
+	bool isEqual = true;
+
+	int cnt = 0;
+	while (cnt != currentWord.size())
+	{
+		if (currentWord[cnt] != this->targetString[startIndex])
+		{
+			isEqual = false;
+			break;
+		}
+		cnt++;
+		startIndex++;
+	}
+	return isEqual;
 }
