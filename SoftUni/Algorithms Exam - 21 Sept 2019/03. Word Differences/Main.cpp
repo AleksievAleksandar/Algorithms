@@ -17,8 +17,8 @@ int main()
 	firstString = getUserInput();
 	secondString = getUserInput();
 
-	WordDifferences* wordDiff = new WordDifferences();
-	wordDiff->findMinChanges(firstString, secondString);
+	WordDifferences* levenshteinDistance = new WordDifferences();
+	std::cout <<"Deletions and Insertions: " << levenshteinDistance->findMinChanges(firstString, secondString) << "\n";
 
 	return 0;
 }
