@@ -1,61 +1,54 @@
 #include "WordDifferences.h"
 
-void WordDifferences::findMinChanges(const std::string &first, const std::string &second)
+int WordDifferences::findMinChanges(const std::string &first, const std::string &second)
 {
-	this->charVector.resize(first.size());
-	this->charVectorTarget.resize(first.size());
-	this->firstWordCopy = first;
-	
-	this->getCharsFromString(first, second);
+	this->stringToModify = first;
+	this->stringTarget = second;
 
-	this->generateDiffs(this->charVector, 0);
+	return this->generateDiffs(this->stringToModify, this->stringTarget);
 }
 
-void WordDifferences::getCharsFromString(const std::string& strOne, const std::string& strTwo)
+
+int WordDifferences::generateDiffs(const std::string &stringToModify, const std::string &stringTarget)
 {
-	for (size_t i = 0; i < strOne.size(); i++)
+	std::vector<std::vector<int>> levenshteinDistanceMatrix(stringToModify.size() + 1, std::vector<int>(stringToModify.size() + 1, 0));
+	this->setRowsAndCols(levenshteinDistanceMatrix);
+
+	return this->calculateDistance(levenshteinDistanceMatrix);
+}
+
+
+int WordDifferences::min(const int &a, const int &b)
+{
+	return (a < b) ? a : b;
+}
+
+
+void WordDifferences::setRowsAndCols(std::vector<std::vector<int>> &matrix)
+{
+	for (size_t i = 0; i < this->stringToModify.size() + 1; i++)
 	{
-		this->charVector[i] = strOne[i];
-		this->charVectorTarget[i] = strTwo[i];
+		matrix[0][i] = i;
+		matrix[i][0] = i;
 	}
 }
 
-void WordDifferences::generateDiffs(std::vector<char> str, int index)
+
+int WordDifferences::calculateDistance(std::vector<std::vector<int>>& matrix)
 {
-	if (this->charVector == this->charVectorTarget)
+	for (size_t row = 1; row < this->stringToModify.size() + 1; row++)
 	{
-		if (this->minChanges > this->currentChanges)
+		for (size_t col = 1; col < this->stringToModify.size() + 1; col++)
 		{
-			this->minChanges = this->currentChanges;
+			if (this->stringTarget[row - 1] != this->stringToModify[col - 1])
+			{
+				matrix[row][col] = this->min(matrix[row - 1][col], matrix[row][col - 1]) + 1;
+			}
+			else
+			{
+				matrix[row][col] = matrix[row - 1][col - 1];
+			}		
 		}
-		return;
 	}
-
-	if (index == str.size())
-	{
-		return;
-	}
-
-	for (size_t i = 0; i < this->charVector.size(); i++)
-	{
-		if (this->charVector[i] != this->charVectorTarget[i])
-		{
-			this->deletion(i);
-			this->generateDiffs(str, index + 1);
-
-			this->insertion(i, this->charVectorTarget[i]);
-			this->generateDiffs(str, index + 1);
-		}
-
-	}
-}
-
-void WordDifferences::deletion(int index)
-{
-	this->charVector.erase(this->charVector.begin() + index);
-}
-
-void WordDifferences::insertion(int index, char symbol)
-{
-	this->charVector.insert(this->charVector.begin() + index, symbol);
+	return matrix[this->stringToModify.size()][this->stringToModify.size()];
 }
