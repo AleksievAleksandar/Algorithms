@@ -22,8 +22,8 @@ int main()
 	BinarySearch *search = new BinarySearch();
 	search->findTarget(matrix, yLoc, xLoc, 4, 11);
 	std::cout << search->printMatrix(matrix);
-
-	int a;
-	std::cin >> a;
+	
+	delete search;
+	
 	return 0;
 }
