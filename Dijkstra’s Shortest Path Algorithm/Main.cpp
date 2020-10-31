@@ -25,6 +25,6 @@ int main()
 	Dijkstra *get_solution = new Dijkstra();
 	get_solution->find_shortest_path(graph, 1, 3);
 
-	getchar();
+	delete get_solution;
 	return 0;
 }
