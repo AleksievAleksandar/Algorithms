@@ -58,7 +58,7 @@ void BinarySearch::findTarget(int martix[martixSize][martixSize], int &y, int &x
 	}
 }
 
-std::string BinarySearch::printMatrix(int matrix[martixSize][martixSize])
+std::string BinarySearch::printMatrix(const int matrix[martixSize][martixSize]) const
 {
 	std::ostringstream info;
 
