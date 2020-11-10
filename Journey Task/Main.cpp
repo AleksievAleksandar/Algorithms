@@ -13,6 +13,7 @@ int main()
 
 	FlightGenerator* flightGen = new FlightGenerator(arr, arraySize, howManyTicketsYouWant);
 	std::cout << flightGen->returnFlightPossibilities();
-
+	
+	delete flightGen;
 	return 0;
 }
