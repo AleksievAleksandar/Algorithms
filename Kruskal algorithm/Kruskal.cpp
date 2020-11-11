@@ -12,6 +12,12 @@ std::string Kruskal::getResult(const int someGraph[GraphSize][GraphSize])
 	return printMST();
 }
 
+Kruskal::~Kruskal()
+{
+	delete this->neighbours;
+	delete this->MST;
+}
+
 void Kruskal::setRoots()
 {
 	for (size_t i = 0; i < GraphSize; i++)
