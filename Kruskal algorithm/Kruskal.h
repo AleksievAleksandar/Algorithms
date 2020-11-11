@@ -6,7 +6,8 @@ class Kruskal
 {
 	Neighbours* neighbours = new Neighbours();
 	Neighbours* MST = new Neighbours();
-
+public:
+	~Kruskal();
 public:
 	std::string getResult(const int someGraph[GraphSize][GraphSize]);
 
