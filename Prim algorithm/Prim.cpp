@@ -36,6 +36,13 @@ std::string Prim::getMST(const int someGraph[gr][gr], int vertex)
 	return printResult();
 }
 
+
+Prim::~Prim()
+{
+	delete this->edges;
+}
+
+
 void Prim::copyGraph(const int someGraph[gr][gr])
 {
 	for (size_t i = 0; i < gr; i++)
