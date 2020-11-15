@@ -7,10 +7,9 @@ const size_t gr = 10;
 class Prim
 {
 	EdgeList *edges = new EdgeList();
-
 public:
 	std::string getMST(const int someGraph[gr][gr], int vertex);
-
+	~Prim();
 private:
 	int graphCopy[gr][gr];
 	int mst[gr][gr];
