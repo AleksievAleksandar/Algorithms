@@ -1,0 +1,5 @@
+Triplets:
+
+Given an array containing N int, and and number S denoting a target sum.
+
+Find all distinct ints that can add up to form target sum. The numbers in each triplet should be ordered in ascending order, and triplets should be ordered too. Return empty array if no such triplet exist.
