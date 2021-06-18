@@ -1,8 +1,10 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
-std::vector<std::vector<int> > findTriplets(const std::vector<int>& data, const int targetSum)
+std::vector<std::vector<int> > findTriplets(std::vector<int>& data, const int targetSum)
 {
+	std::sort(data.begin(), data.end());
 	size_t n = data.size();
 	std::vector<std::vector<int> > result;
 
