@@ -1,0 +1,7 @@
+Longest Band
+
+Given an array containing N int, find length of longest band.
+
+A band is defind as a subsequence which can be re-ordered in such a manner all elements appear consecutive (ie with absolute difference of 1 between neighbouring elements).
+
+A longest band is the band (subsequence) which contains maximum integers. 
