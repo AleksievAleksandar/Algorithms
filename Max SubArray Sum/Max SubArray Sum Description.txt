@@ -1,0 +1,5 @@
+Max SubArray Sum
+
+Implement a function that takes an input a vector of int, and prints the maximun subArray sum that can be formed.
+A subArray is defined as consecutive segment of the array.
+If all numbers are negative, then return 0.
