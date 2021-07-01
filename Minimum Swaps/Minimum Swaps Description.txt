@@ -1,0 +1,3 @@
+Min Swaps
+
+Given an array of size N, find the minimum number of swaps needed to make the array as sorted.
