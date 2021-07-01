@@ -1,0 +1,5 @@
+SubArray Sort
+
+Given an array of size at-least two, find the smallest subArray that needs to be sorted in place so that entire input array becomens sorted.
+
+If the input array is already sorted, the function should return [-1, -1], otherwise return the start & end index of smallest subArray.
