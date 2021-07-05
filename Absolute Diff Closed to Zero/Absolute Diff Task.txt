@@ -1,0 +1,11 @@
+Minimum Diff
+
+Implement a function that takes in two non-empty arrays of int, finds the pair of numbers (one from each arr) who absolute difference is closed to zero, and returns a pair containing these two numbers, with the first number from array.
+Only one such pair will exist for the test.
+
+Input:
+Arr1 = [23, 5, 10, 17, 30]
+Arr2 = [26, 134, 135, 14, 19]
+
+Output:
+17, 19
