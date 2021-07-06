@@ -1,0 +1,10 @@
+SubSet
+
+Check if string s2 is subset of string s1.
+
+Input:
+s1 = "codingminutes";
+s2 = "cines";
+
+Output:
+True
